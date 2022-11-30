@@ -1,5 +1,5 @@
 # CNG 491 Pop Tracker Application
-## Authors: Ibrahim Ozkan, Adil B. Kebapçıoğlu
+Authors: Ibrahim Ozkan, Adil B. Kebapçıoğlu
 
 ## Project Description
 In most indoor areas, mainly gyms and supermarkets, over-crowdedness causes significant
