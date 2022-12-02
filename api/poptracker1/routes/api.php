@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/business/{id}', [PopController::class, 'addBusiness']);
 Route::get('/population/{id}', [PopController::class, 'getCurrentPopulation']);
 Route::post('/population/add/{id}', [PopController::class, 'IncrementPopulation']);
 Route::post('/population/remove/{id}', [PopController::class, 'DecrementPopulation']);
