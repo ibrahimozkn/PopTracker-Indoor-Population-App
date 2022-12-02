@@ -38,11 +38,15 @@ class _HomeState extends State<Home> {
   void refreshPopulation() async{
     Either<int, String> result = await DioClient.fetchPopulation();
 
-    if(result.isRight){
-      currentPopulation = result.right;
-    }else{
-      currentPopulation = result.left.toString();
-    }
+    setState(() {
+      if(result.isRight){
+        currentPopulation = result.right;
+      }else{
+        currentPopulation = result.left.toString();
+      }
+    });
+
+
 
   }
 
@@ -50,23 +54,29 @@ class _HomeState extends State<Home> {
 
     Either<bool, String> result = await DioClient.incrementPopulation();
 
-    if(result.isRight){
-      currentPopulation = result.right;
-    }else{
-      refreshPopulation();
-    }
+    setState(() {
+      if(result.isRight){
+        currentPopulation = result.right;
+      }else{
+        refreshPopulation();
+      }
+    });
+
 
   }
 
   void decrementPopulation() async{
 
-    Either<bool, String> result = await DioClient.incrementPopulation();
+    Either<bool, String> result = await DioClient.decrementPopulation();
 
-    if(result.isRight){
-      currentPopulation = result.right;
-    }else{
-      refreshPopulation();
-    }
+    setState(() {
+      if(result.isRight){
+        currentPopulation = result.right;
+      }else{
+        refreshPopulation();
+      }
+    });
+
 
   }
 
