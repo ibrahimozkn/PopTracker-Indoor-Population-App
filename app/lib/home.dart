@@ -27,15 +27,16 @@ class _HomeState extends State<Home> {
       loadMsg = "Loading screen";
     });
 
-    currentPopulation = "0";
-
-    setState(() {
-      _isLoading = false;
-    });
+    refreshPopulation();
 
   }
 
   void refreshPopulation() async{
+    setState(() {
+      _isLoading = true;
+      loadMsg = "Refreshing population data";
+    });
+
     Either<int, String> result = await DioClient.fetchPopulation();
 
     setState(() {
@@ -44,6 +45,10 @@ class _HomeState extends State<Home> {
       }else{
         currentPopulation = result.left.toString();
       }
+    });
+
+    setState(() {
+      _isLoading = false;
     });
 
 
