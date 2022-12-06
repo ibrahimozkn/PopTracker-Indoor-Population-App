@@ -35,6 +35,9 @@ class PopController extends Controller
     {
         $result = Population::find($id);
         $result->count--;
+        if($result->count < 0){
+            return 0;
+        }
         $result->save();
         return 1;
     }
