@@ -16,8 +16,6 @@ class CreatePopulationsTable extends Migration
         Schema::create('populations', function (Blueprint $table) {
             $table->id();
             $table->integer('count');
-            $table->unsignedBigInteger('business_id');
-            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
         });
     }
 

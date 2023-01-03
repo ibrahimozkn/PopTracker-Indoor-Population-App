@@ -18,6 +18,8 @@ class CreateBusinessesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('coordinates');
+            $table->unsignedBigInteger('population_id');
+            $table->foreign('population_id')->references('id')->on('populations')->onDelete('cascade');
         });
     }
 

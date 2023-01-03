@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Population;
+use App\Models\Business;
+use App\Models\PopulationHistory;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +18,19 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $businesses = Business::get();
+            foreach($businesses as $business){
+                $id = $business->id;
+                $population = $business->population()->get('count');
+                $date = now()->format('d/m/Y');
+                $populationHistory = new PopulationHistory;
+                $populationHistory->business_id = $id;
+                $populationHistory->population = $population;
+                $populationHistory->date = $date;
+                $populationHistory->save();
+            }
+        })->daily();
     }
 
     /**

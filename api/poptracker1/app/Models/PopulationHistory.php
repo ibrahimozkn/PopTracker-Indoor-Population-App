@@ -9,7 +9,7 @@ class PopulationHistory extends Model
 {
     use HasFactory;
 
-    private $fillable = [
+    protected $fillable = [
         'population',
         'date'
     ];

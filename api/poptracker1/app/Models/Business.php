@@ -9,16 +9,17 @@ class Business extends Model
 {
     use HasFactory;
 
-    private $fillable = [
+    protected $fillable = [
         'name',
         'address',
-        'coordinates'
+        'coordinates',
+        'population_id'
     ];
 
     public $timestamps = false;
 
     public function population(){
-        return $this->has(Population::class);
+        return $this->belongsTo(Population::class, 'population_id', 'id');
     }
 
     public function populationHistory(){
