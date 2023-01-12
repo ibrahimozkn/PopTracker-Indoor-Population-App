@@ -21,17 +21,18 @@ use App\Http\Controllers\PopulationHistoryController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/business', [BusinessController::class, 'getBusinesses']);
-Route::post('/business', [BusinessController::class, 'addBusiness']);
-Route::post('/deleteBusiness/{id}', [BusinessController::class, 'deleteBusiness']);
-Route::get('/population/{id}', [PopController::class, 'getCurrentPopulation']);
-Route::get('/history/{id}', [PopulationHistoryController::class, 'getPopulationHistory']);
-Route::post('/population/add/{id}', [PopController::class, 'IncrementPopulation']);
-Route::post('/population/remove/{id}', [PopController::class, 'DecrementPopulation']);
 
 //Protected Routes (need token to access)
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/business', [BusinessController::class, 'getBusinesses']);
+    Route::post('/business', [BusinessController::class, 'addBusiness']);
+    Route::post('/deleteBusiness/{id}', [BusinessController::class, 'deleteBusiness']);
+    Route::post('/editBusiness', [BusinessController::class, 'editBusiness']);
+    Route::get('/population/{id}', [PopController::class, 'getCurrentPopulation']);
+    Route::get('/history/{id}', [PopulationHistoryController::class, 'getPopulationHistory']);
+    Route::post('/population/add/{id}', [PopController::class, 'IncrementPopulation']);
+    Route::post('/population/remove/{id}', [PopController::class, 'DecrementPopulation']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
