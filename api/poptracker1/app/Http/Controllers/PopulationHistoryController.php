@@ -14,7 +14,7 @@ class PopulationHistoryController extends Controller
             return response(['message' => 'Authorization error, account is not Admin!'], 401);
         }
 
-        $history = PopulationHistory::where('business_id', $id)->get();
+        $history = PopulationHistory::select('population', 'date')->where('business_id', $id)->get();
         return $history;
     }
 }
