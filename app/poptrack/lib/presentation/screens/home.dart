@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home"),
         actions: [
-          pref.getString('role') == "admin"
+          pref.getString('role') == "1"
               ? IconButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed('/add_business');
@@ -138,12 +138,12 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    IconButton(
+                                    pref.getString('role') == "1" ? IconButton(
                                         onPressed: () => onCompanyDelete(index),
                                         icon: Icon(
                                           Icons.delete_forever,
                                           color: Colors.redAccent,
-                                        ))
+                                        )) : Container(),
                                   ],
                                 ),
                               ],

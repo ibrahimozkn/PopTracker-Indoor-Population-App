@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:poptrack/data/models/business.dart';
 import 'package:poptrack/data/models/dioclient.dart';
+import 'package:poptrack/data/models/population_data.dart';
 
 import '../models/failure.dart';
 
@@ -110,6 +111,28 @@ class BusinessRepository extends DioClient{
     }
 
     return Right(response.data.map<Business>((json) => Business.fromJson(json)).toList());
+
+
+  }
+
+  Future<Either<Failure, List<PopulationData>>> getPopulationHistory(int id, String token) async{
+    Map<String, String> bearer = {
+      "Authorization": "Bearer $token",
+    };
+    this.option.headers!.addAll(bearer);
+    Response response;
+    try {
+      response = await client.get("/api/history/$id", options: this.option);
+      print(response.data);
+    } on DioError catch (e) {
+      return Left(Failure(error: e.message));
+    }
+
+    if (response.statusCode != 200) {
+      return Left(Failure(error: "HTTP status error: " + response.statusCode.toString()));
+    }
+
+    return Right(response.data.map<PopulationData>((json) => PopulationData.fromJson(json)).toList());
 
 
   }
