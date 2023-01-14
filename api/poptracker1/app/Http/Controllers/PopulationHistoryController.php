@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PopulationHistory;
+use Illuminate\Support\Facades\DB;
 
 class PopulationHistoryController extends Controller
 {
@@ -14,7 +15,8 @@ class PopulationHistoryController extends Controller
             return response(['message' => 'Authorization error, account is not Admin!'], 401);
         }
 
-        $history = PopulationHistory::select('population', 'date')->where('business_id', $id)->get();
+        $history = PopulationHistory::select('population', 'date')->where('business_id', $id)->orderBy('date', 'ASC')->get();
+
         return $history;
     }
 }

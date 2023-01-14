@@ -18,7 +18,7 @@ class CreatePopulationHistoriesTable extends Migration
             $table->unsignedBigInteger('business_id');
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
             $table->string('population');
-            $table->string('date');
+            $table->date('date');
             $table->timestamps();
         });
     }
