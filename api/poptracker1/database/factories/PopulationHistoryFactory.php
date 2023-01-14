@@ -16,7 +16,7 @@ class PopulationHistoryFactory extends Factory
         return [
             'business_id' => 1,
             'population' => $this->faker->numberBetween($min = 0, $max = 50),
-            'date' => $this->faker->unique()->dateTimeInInterval('-24 week', '+168 days')->format('d/m/Y'),
+            'date' => $this->faker->unique()->dateTimeInInterval('-24 week', '+168 days')->format('Y-m-d'),
         ];
     }
 }
