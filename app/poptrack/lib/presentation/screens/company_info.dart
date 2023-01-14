@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:poptrack/data/models/failure.dart';
 import 'package:poptrack/data/models/population_data.dart';
 import 'package:poptrack/data/repositories/business_repository.dart';
@@ -65,20 +66,22 @@ class _CompanyInfoPageState extends State<CompanyInfoPage> {
             appBar: AppBar(
               title: Text(business.name),
               actions: [
-                pref.getString('role') == "1" ? IconButton(
-                    onPressed: () async {
-                      var response = await Navigator.of(context)
-                          .pushNamed('/edit_company', arguments: {
-                        'business': business,
-                      });
+                pref.getString('role') == "1"
+                    ? IconButton(
+                        onPressed: () async {
+                          var response = await Navigator.of(context)
+                              .pushNamed('/edit_company', arguments: {
+                            'business': business,
+                          });
 
-                      if (response is Business) {
-                        setState(() {
-                          business = response;
-                        });
-                      }
-                    },
-                    icon: Icon(Icons.edit)) : Container(),
+                          if (response is Business) {
+                            setState(() {
+                              business = response;
+                            });
+                          }
+                        },
+                        icon: Icon(Icons.edit))
+                    : Container(),
               ],
             ),
             body: Container(
@@ -159,17 +162,21 @@ class _CompanyInfoPageState extends State<CompanyInfoPage> {
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  pref.getString('role') == "1" ? Align(
-                                      alignment: Alignment.centerRight,
-                                      child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                                '/population_history',
-                                                arguments: {
-                                                  'business_id': business.id,
-                                                });
-                                          },
-                                          child: Text("Population History"))) : Container(),
+                                  pref.getString('role') == "1"
+                                      ? Align(
+                                          alignment: Alignment.centerRight,
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pushNamed(
+                                                    '/population_history',
+                                                    arguments: {
+                                                      'business_id':
+                                                          business.id,
+                                                    });
+                                              },
+                                              child:
+                                                  Text("Population History")))
+                                      : Container(),
                                 ],
                               ),
                             ),
@@ -192,15 +199,26 @@ class _CompanyInfoPageState extends State<CompanyInfoPage> {
                         SfCartesianChart(
                             // Initialize category axis
                             primaryXAxis: CategoryAxis(),
-                            series: <LineSeries<PopulationData, String>>[
+                            series: <ChartSeries<PopulationData, String>>[
+                              // Renders line chart
                               LineSeries<PopulationData, String>(
+                                  dataSource: populationDatas,
+                                  xValueMapper: (PopulationData data, _) =>
+                                      DateFormat("dd/mm/yyyy")
+                                          .format(data.date),
+                                  yValueMapper: (PopulationData data, _) =>
+                                      data.population)
+                            ]
+                            /*series: <LineSeries<PopulationData, String>>[
+                              LineSeries<PopulationData, DateTime>(
                                   // Bind data source
                                   dataSource: populationDatas,
                                   xValueMapper: (PopulationData data, _) =>
                                       data.date,
                                   yValueMapper: (PopulationData data, _) =>
                                       data.population)
-                            ]),
+                            ]*/
+                            ),
                       ],
                     ),
                   ),

@@ -124,6 +124,7 @@ class BusinessRepository extends DioClient{
     try {
       response = await client.get("/api/history/$id", options: this.option);
       print(response.data);
+      print(response.realUri);
     } on DioError catch (e) {
       return Left(Failure(error: e.message));
     }

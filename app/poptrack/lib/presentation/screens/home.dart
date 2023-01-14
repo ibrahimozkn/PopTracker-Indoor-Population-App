@@ -102,58 +102,60 @@ class _HomePageState extends State<HomePage> {
           IconButton(onPressed: onLogout, icon: Icon(Icons.logout)),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            itemCount: businesses.length,
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                onTap: () => onCompanySelected(index),
-                child: Card(
-                    margin: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 18.0),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      businesses[index].name,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xFF212121),
-                                        fontWeight: FontWeight.w500,
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: businesses.length,
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  onTap: () => onCompanySelected(index),
+                  child: Card(
+                      margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                      child: Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 18.0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        businesses[index].name,
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontFamily: 'Roboto',
+                                          color: Color(0xFF212121),
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    pref.getString('role') == "1" ? IconButton(
-                                        onPressed: () => onCompanyDelete(index),
-                                        icon: Icon(
-                                          Icons.delete_forever,
-                                          color: Colors.redAccent,
-                                        )) : Container(),
-                                  ],
-                                ),
-                              ],
+                                      pref.getString('role') == "1" ? IconButton(
+                                          onPressed: () => onCompanyDelete(index),
+                                          icon: Icon(
+                                            Icons.delete_forever,
+                                            color: Colors.redAccent,
+                                          )) : Container(),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )),
-              );
-            }),
+                          ],
+                        ),
+                      )),
+                );
+              }),
+        ),
       ),
     ));
   }
