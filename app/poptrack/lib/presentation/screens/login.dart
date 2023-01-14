@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
       });
     }, (r) {
       pref.setString('token', r.token);
-      pref.setString('role', r.role ?? "admin");
+      pref.setString('role', r.role ?? "0");
 
       Navigator.of(context).popAndPushNamed('/home');
     });
