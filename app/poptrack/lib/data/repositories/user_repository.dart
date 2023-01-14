@@ -26,7 +26,6 @@ class UserRepository extends DioClient {
     if (response.statusCode != 200 && response.data['message'] != null) {
       return Left(Failure(error: response.data['message']));
     } else {
-      print("hey");
       var user = User(token: response.data["token"]);
       user.role = response.data["role"].toString();
       return Right(user);
