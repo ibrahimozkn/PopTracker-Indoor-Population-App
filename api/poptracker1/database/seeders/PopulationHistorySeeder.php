@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Business;
 use App\Models\PopulationHistory;
 
 class PopulationHistorySeeder extends Seeder
@@ -15,6 +16,14 @@ class PopulationHistorySeeder extends Seeder
      */
     public function run()
     {
-        PopulationHistory::factory()->times(25)->create();
+        $count = Business::get()->count();
+        $first = Business::first()->id;
+        
+        for($i=$first;$i<($count+$first);$i++){
+            PopulationHistory::factory()->count(100)->create([
+                'business_id' => $i,
+            ]);
+        }
+        
     }
 }
