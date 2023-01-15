@@ -39,4 +39,6 @@ Software requirements:
 2. Install the APK file
 3. Launch the app
 
-
+## Recommended Cloud Services to Run your backend API
+AWS EC2 - https://aws.amazon.com/ec2/
+AWS RDS - https://aws.amazon.com/rds/
