@@ -124,6 +124,7 @@ class _PopulationSimulatorPageState extends State<PopulationSimulatorPage> {
       Navigator.of(context).pop();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return _isLoading
