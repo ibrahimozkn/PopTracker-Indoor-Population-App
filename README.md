@@ -19,7 +19,7 @@ two motion sensors and send the data to the Cloud. The mobile app would display 
 collected from the motion sensor via Cloud. The Cloud will regularly compute the existing data
 to create statistics.
 
-##How to setup the backend?
+## How to setup the backend?
 Software requirements:
 - Composer
 - PHP v8.0.1
@@ -34,7 +34,7 @@ Software requirements:
 7. Execute "php artisan db:seed" to generate test data (if needed)
 8. Execute "php artisan serve" to start the API
 
-##How to Install the Mobile Application?
+## How to Install the Mobile Application?
 1. Download the latest version of APK file.
 2. Install the APK file
 3. Launch the app
