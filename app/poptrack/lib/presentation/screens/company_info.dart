@@ -36,7 +36,6 @@ class _CompanyInfoPageState extends State<CompanyInfoPage> {
     initScreen();
   }
 
-
   @override
   void dispose() {
     _simActive = false;
