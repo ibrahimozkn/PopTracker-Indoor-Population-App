@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Business;
+use App\Models\Population;
 
 class BusinessSeeder extends Seeder
 {
@@ -15,6 +16,13 @@ class BusinessSeeder extends Seeder
      */
     public function run()
     {
-        Business::factory()->times(25)->create();
+        for ($i = 0; $i < 50; $i++) {
+            $population = new Population;
+            $population->save();
+            Business::factory()->create([
+                'population_id' => $population->id,
+            ]);
+        }
+        
     }
 }

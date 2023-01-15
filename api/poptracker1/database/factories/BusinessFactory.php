@@ -17,7 +17,6 @@ class BusinessFactory extends Factory
             'name' => $this->faker->company,
             'address' => $this->faker->address,
             'coordinates' => $this->faker->latitude($min = -90, $max = 90).','.$this->faker->longitude($min = -180, $max = 180),
-            'population_id' => 3,
         ];
     }
 }

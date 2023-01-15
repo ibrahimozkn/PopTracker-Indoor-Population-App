@@ -23,7 +23,7 @@ class Kernel extends ConsoleKernel
             foreach($businesses as $business){
                 $id = $business->id;
                 $population = $business->population()->get('count');
-                $date = now()->format('d/m/Y');
+                $date = now()->format('Y-m-d');
                 $populationHistory = new PopulationHistory;
                 $populationHistory->business_id = $id;
                 $populationHistory->population = $population;
